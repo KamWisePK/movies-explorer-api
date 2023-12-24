@@ -4,7 +4,7 @@ const BadRequest = require('../errors/BadRequestError');
 const NotFound = require('../errors/NotFoundError');
 const EmailUsed = require('../errors/EmailUsedError');
 const User = require('../models/user');
-const JWT_SECRET = require('../constants/config');
+const { JWT_SECRET, NODE_ENV } = require('../constants/config');
 
 module.exports.getMe = (req, res, next) => {
   User.findById(req.user._id)
@@ -34,7 +34,11 @@ module.exports.changeUserData = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(BadRequest('Переданы некорректные данные при обновлении профиля.'));
-      } else next(err);
+      } else if (err.code === 11000) {
+        next(new EmailUsed('Email занят другим пользвоателем'));
+      } else {
+        next(err);
+      }
     });
 };
 
@@ -62,13 +66,25 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  return User
-    .findUserByCredentials(email, password)
+  User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
-        expiresIn: '7d',
-      });
-      res.send({ token });
+      const token = jwt.sign(
+        { _id: user._id },
+        JWT_SECRET,
+        { expiresIn: '7d' },
+      );
+      res.cookie('token', token, {
+        maxAge: 604800,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: NODE_ENV === 'production',
+      })
+        .send({ message: 'Вход выполнен' });
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie('token')
+    .send({ message: 'Вы успешно вышли из учетной записи' });
 };
