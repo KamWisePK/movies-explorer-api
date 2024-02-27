@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const urlValidation = require('../validation/urlValidation');
+const isURL = require('validator/lib/isURL');
 
 const movieSchema = new mongoose.Schema({
   nameRU: {
@@ -43,9 +43,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (value) => {
-        urlValidation.test(value);
-      },
+      validator: (value) => isURL(value)
+      ,
       message: 'Некорректный URL к постеру',
     },
   },
@@ -54,9 +53,8 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (value) => {
-        urlValidation.test(value);
-      },
+      validator: (value) => isURL(value),
+
       message: 'Некорректный URL к трейлеру',
     },
   },
@@ -65,9 +63,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (value) => {
-        urlValidation.test(value);
-      },
+    validator: (value) => isURL(value),
       message: 'Некорректный URL к миниатюре постера',
     },
   },

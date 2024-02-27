@@ -77,7 +77,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 604800,
         httpOnly: true,
         sameSite: 'none',
-        secure: NODE_ENV === 'production',
+        secure: true,
       })
         .send({ message: 'Вход выполнен' });
     })
