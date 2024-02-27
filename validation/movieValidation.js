@@ -1,5 +1,4 @@
 const { Joi, celebrate } = require('celebrate');
-const { urlValidation } = require('./urlValidation');
 
 module.exports.validateMovieCreation = celebrate({
   body: Joi.object().keys({
@@ -8,9 +7,9 @@ module.exports.validateMovieCreation = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(urlValidation),
-    trailerLink: Joi.string().required().pattern(urlValidation),
-    thumbnail: Joi.string().required().pattern(urlValidation),
+    image: Joi.string().required().uri().trim(),
+    trailerLink: Joi.string().required().uri().trim(),
+    thumbnail: Joi.string().required().uri().trim(),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
