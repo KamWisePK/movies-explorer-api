@@ -50,7 +50,7 @@ module.exports.getMovies = (req, res, next) => {
     .catch(next);
 };
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params._id)
+  Movie.find({movieId:req.params._id})
     .then((movie) => {
       if (!movie) {
         throw new NotFound('Запрашиваемый фильм не найдена');
