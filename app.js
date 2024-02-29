@@ -19,6 +19,8 @@ const options = {
   origin: [
     'http://diplomyandex.movies.nomoredomainswork.ru',
     'https://diplomyandex.movies.nomoredomainswork.ru',
+    'https://api.diplomyandex.movies.nomoredomainsmonster.ru',
+    'http://api.diplomyandex.movies.nomoredomainsmonster.ru'
 
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
