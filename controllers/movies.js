@@ -76,9 +76,8 @@ module.exports.deleteMovie = (req, res, next) => {
           ),
         );
       }
-      return movie
-        .remove()
-        .then(() => res.send({ message: 'Фильм успешно удален' }));
+      Movie.remove({'_id':movieId});
+      res.send({ message: 'MOVIE_DELETE_MESSAGE' });
     })
     .catch(next);
 };
