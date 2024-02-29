@@ -57,11 +57,8 @@ module.exports.deleteMovie = (req, res, next) => {
       } if (req.user._id !== movie.owner.toString()) {
         throw new CurrentErr('Вы не можете удалять чужие фильмы');
       }
-      Movie.findByIdAndRemove(movie._id)
-        .then((movieForRemove) => {
-          res.send({ data: movieForRemove });
-        })
-        .catch(next);
+      movie.deleteOne();
+      res.send({ message: 'MOVIE_DELETE_MESSAGE '});
     })
     .catch(next);
 };
