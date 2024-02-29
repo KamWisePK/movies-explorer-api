@@ -76,7 +76,7 @@ module.exports.deleteMovie = (req, res, next) => {
           ),
         );
       }
-      Movie.remove({'_id':movieId});
+      movie.deleteOne();
       res.send({ message: 'MOVIE_DELETE_MESSAGE' });
     })
     .catch(next);
