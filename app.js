@@ -19,7 +19,7 @@ const options = {
   origin: [
     'http://diplomyandex.movies.nomoredomainswork.ru',
     'https://diplomyandex.movies.nomoredomainswork.ru',
-    
+
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -44,6 +44,6 @@ app.use(router);
 app.use(errorLogger);
 
 app.use(errors());
-//app.use(errorHandler);
+app.use(errorHandler);
 
 app.listen(PORT);
