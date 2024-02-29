@@ -49,19 +49,7 @@ module.exports.getMovies = (req, res, next) => {
     .then((movies) => res.status(200).send(movies))
     .catch(next);
 };
-// module.exports.deleteMovie = (req, res, next) => {
-//   Movie.find({movieId:req.params._id})
-//     .then((movie) => {
-//       if (!movie) {
-//         throw new NotFound('Запрашиваемый фильм не найдена');
-//       } if (req.user._id !== movie.owner.toString()) {
-//         throw new CurrentErr('Вы не можете удалять чужие фильмы');
-//       }
-//       movie.deleteOne();
-//       res.send({ message: 'MOVIE_DELETE_MESSAGE '});
-//     })
-//     .catch(next);
-// };
+
 module.exports.deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
   return Movie.findById(movieId)
@@ -76,7 +64,7 @@ module.exports.deleteMovie = (req, res, next) => {
           ),
         );
       }
-      movie.deleteOne();
+      Movie.deleteOne(movie);
       res.send({ message: 'MOVIE_DELETE_MESSAGE' });
     })
     .catch(next);
