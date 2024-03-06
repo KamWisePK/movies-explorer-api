@@ -20,7 +20,10 @@ const options = {
     'http://diplomyandex.movies.nomoredomainswork.ru',
     'https://diplomyandex.movies.nomoredomainswork.ru',
     'https://api.diplomyandex.movies.nomoredomainsmonster.ru',
-    'http://api.diplomyandex.movies.nomoredomainsmonster.ru'
+    'http://api.diplomyandex.movies.nomoredomainsmonster.ru',
+    'http://localhost:3001',
+    'https://localhost:3001'
+
 
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
