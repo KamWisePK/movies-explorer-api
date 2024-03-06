@@ -52,7 +52,7 @@ module.exports.getMovies = (req, res, next) => {
 
 module.exports.deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
-  return Movie.findById(movieId)
+   Movie.findById(movieId)
     .then((movie) => {
       if (!movie) {
         throw new NotFound('Фильм не найден');
