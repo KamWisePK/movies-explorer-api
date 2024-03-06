@@ -64,8 +64,10 @@ module.exports.deleteMovie = (req, res, next) => {
           ),
         );
       }
-      Movie.deleteOne(movie);
-      res.send({ message: 'MOVIE_DELETE_MESSAGE' });
+      Movie.deleteOne(movie).then(() => res.send({ message: 'MOVIE_DELETE_MESSAGE' }));
+
+
+
     })
     .catch(next);
 };
