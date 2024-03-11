@@ -9,6 +9,7 @@ const limiter = require('./middlewares/rateLimit');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(express.json());
 
 const { PORT, bitfilmsdb } = require('./constants/config');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -32,8 +33,8 @@ const options = {
   credentials: true,
 };
 
-app.use(cors());
-app.use(express.json());
+app.use(cors(options));
+
 app.use(helmet());
 app.use(limiter);
 app.use(cookieParser());
