@@ -4,8 +4,8 @@ const allowedCors = [
   'https://diplomyandex.movies.nomoredomainswork.ru',
   'https://api.diplomyandex.movies.nomoredomainsmonster.ru',
   'http://api.diplomyandex.movies.nomoredomainsmonster.ru',
-  'http://localhost:3001',
-  'https://localhost:3001',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)

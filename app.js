@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-const cors = require('./middlewares/cors');
+//const cors = require('./middlewares/cors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
@@ -32,7 +32,7 @@ const errorHandler = require('./middlewares/errorHandler');
 //   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
 //   credentials: true,
 // };
-app.use(cors);
+//app.use(cors);
 // app.use(cors(options));
 app.use(express.json());
 app.use(helmet());
